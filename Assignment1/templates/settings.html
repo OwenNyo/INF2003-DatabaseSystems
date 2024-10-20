@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Settings Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+  <script>
+    // JavaScript function to confirm deletion
+    function confirmDeletion(event) {
+      // Prevent the form from submitting immediately
+      event.preventDefault();
+
+      // Show confirmation dialog
+      let confirmation = confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone.");
+
+      // If the user confirms, submit the form
+      if (confirmation) {
+        event.target.submit();
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/med_logo.png') }}" alt="Logo" class="logo-img">
+    </div>
+    <div class="header-buttons">
+      <a href="/user_dashboard" class="home-button">Home</a>
+      <a href="/appointment" class="bookapt-button">Book Appointment</a>
+      <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+  </header>
+
+  <section class="settings-section">
+    <h2>{{ role|capitalize }} Settings</h2>
+
+    <form class="user-form" action="{{ url_for('update_account') }}" method="POST">
+
+      <!-- Display Username (non-editable) -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <div class="username-display">{{ username }}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <!-- Placeholder is populated dynamically from the backend -->
+        <input type="email" id="email" name="email" placeholder="{{ email }}" value="{{ email }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone_number">Phone Number:</label>
+        <!-- Placeholder is populated dynamically from the backend -->
+        <input type="tel" id="phone_number" name="phone_number" placeholder="{{ phone_number }}" value="{{ phone_number }}" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <!-- Placeholder is populated dynamically from the backend -->
+        <input type="text" id="address" name="address" placeholder="{{ address }}" value="{{ address }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter new password">
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
+      </div>
+
+      <button type="submit" class="btn save-btn">Save Changes</button>
+    </form>
+
+    <div class="delete-section">
+      <h3>Danger Zone</h3>
+      <p>If you wish to delete your account, please be aware that this action is permanent.</p>
+
+      <!-- Delete Account Form with Confirmation -->
+      <form action="{{ url_for('delete_account') }}" method="POST" onsubmit="confirmDeletion(event)">
+        <button type="submit" class="btn delete-btn">Delete Account</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+  </footer>
+</body>
+</html>

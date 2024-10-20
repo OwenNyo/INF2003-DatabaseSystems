@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+
+</head>
+<body>
+  <header class="header">
+    <div class="header-logo">
+      <img src="{{ url_for('static', filename='images/med_logo.png') }}" alt="Logo" class="logo-img">
+    </div>
+
+    <div class="header-buttons">
+      <a href="/appointment" class="bookapt-button">Book Appointment</a>
+      <a href="{{ url_for('settings') }}" class="settings-button">Settings</a>
+      <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+  </header>
+
+  <div class="center-content">
+    <h1>Welcome, {{ username }}!</h1>
+  </div>
+
+
+  <div class="main-container">
+    <aside class="form-container">
+      <form method="POST" action="{{ url_for('user_health')}}">
+        <h2>Health Metrics</h2>
+        <div class="form-group">
+          <label for="blood-pressure">Blood Pressure:</label>
+          <input type="text" id="blood-pressure" name="blood-pressure" class="input-field">
+        </div>
+        <div class="form-group">
+          <label for="blood-sugar">Blood Sugar:</label>
+          <input type="text" id="blood-sugar" name="blood-sugar" class="input-field">
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+    </aside>
+
+    <section class="charts-container">
+      {% if showchart %}
+        <img src="{{ url_for('static', filename='images/bpchart.png') }}" alt="Blood Pressure Chart" class="chart-img">
+        <img src="{{ url_for('static', filename='images/bschart.png') }}" alt="Blood Sugar Chart" class="chart-img">
+      {% else %}
+        <p>No data available</p>
+      {% endif %}
+    </section>
+  </div>
+</body>
+</html>

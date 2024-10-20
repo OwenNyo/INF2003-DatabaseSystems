@@ -1,0 +1,224 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+  }
+  
+  /* Header Section */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    padding: 20px 50px;
+    background-color: #0056b3;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo-img {
+    height: 60px; /* Adjusted the height to make the logo smaller */
+    width: auto; /* Ensures that the aspect ratio is maintained */
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 1rem; /* Adds space between the buttons */
+  }
+  
+  .logout-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .bookapt-button {
+    background-color: rgb(32, 122, 195);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .bookapt-button:hover {
+    background-color: rgb(24, 90, 145);
+  }
+
+  
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  
+  .settings-button {
+    background-color: #55b02b; 
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settings-button:hover {
+    background-color: #3a8218; 
+  }
+
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 0 auto; 
+  }
+
+.form-container {
+  border: 1px solid black;
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 10px;    
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  gap: 10px;              
+}
+
+/* Label styling */
+.form-group label {
+  flex: 1;                   /* Allow label to take available space */
+  max-width: 100px;          /* Adjust label width as needed */
+  text-align: right;         /* Align the text to the right */
+  margin-right: 10px;        /* Add some space between the label and input field */
+}
+
+.input-field {
+  flex: 2;                   /* Allow input field to fill remaining space */
+  height: 30px;
+  background-color: #1E688F;
+  border: none;
+  color: white;
+  padding: 5px;              
+  box-sizing: border-box;    
+  width: 100%;               
+}
+
+.submit-button {
+  border: 2px solid black;
+  padding: 5px 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+
+/* Main container for layout */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-height: 250px;
+}
+
+.form-container h2 {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 1;
+  margin-right: 15px;
+  font-weight: bold;
+  color: #0056b3;
+}
+
+.input-field {
+  flex: 2;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0056b3;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #003d80;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+}
+
+.chart-img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container, .charts-container {
+    padding: 15px;
+  }
+}
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
+  <script src="{{ url_for('static', filename='js/doctor_dashboard.js') }}"></script>
+</head>
+<body>
+
+
+  <!-- Header Section with Logo and Logout -->
+  <header class="header">
+    <div class="header-logo">
+      <img src="{{ url_for('static', filename='images/med_logo.png') }}" alt="Logo" class="logo-img">
+    </div>
+
+    <div class="header-buttons">
+      <a href="{{ url_for('settings') }}" class="settings-button">Settings</a>
+      <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+  </header>
+
+  <!-- Main Content Section -->
+  <div class="main-content">
+    <!-- Add this section near the top of your HTML body -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div id="flash-message" class="flash-container">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+    <!-- Top Section (Queue Number and Appointments) -->
+    <div class="top-section">
+      <!-- Queue Number Card -->
+      <div class="queue-card">
+        <h3>Queue Number</h3>
+        <p id="queue-number">Current Queue Number: <span>0</span></p>
+        <button class="queue-button" onclick="generateNextQueueNumber()">Next Queue</button>
+      </div>
+
+      <div class="appointments-card">
+        <h3>Today's Appointments</h3>
+        <div id="appointment-list">
+          <!-- This will be populated by JavaScript -->
+        </div>
+        <!-- Form for creating tomorrow's schedule -->
+        <form action="{{ url_for('create_schedule') }}" method="POST">
+            <button class="queue-button" type="submit">Create Tomorrow's Schedule</button>
+        </form>
+      </div>
+
+    </div>
+
+
+    <!-- Main Section with Doctor Form on the left and Additional Card on the right -->
+    <div class="content-section">
+      <!-- Left Section (Form for Doctor to Submit Details) -->
+      <div class="form-section">
+        <div class="form-container">
+          <h2>Doctor Form</h2>
+          <form action="{{ url_for('submit_doctor_form') }}" method="POST">
+
+            <!-- Health Tracking Section -->
+            <h3>Health Tracking</h3>
+            <div class="input-field-group">
+              <label for="user_id">User ID:</label>
+              <input type="text" id="user_id" name="user_id" required>
+            </div>
+            <div class="input-field-group">
+              <label for="doc_id">Doctor ID:</label>
+              <input type="text" id="doc_id" name="doc_id" value="{{ doctor_id }}" readonly>
+            </div>
+            <div class="input-field-group">
+              <label for="doc_notes">Doctor Notes:</label>
+              <textarea id="doc_notes" name="doc_notes" required></textarea>
+            </div>
+            <div class="input-field-group">
+              <label for="blood_pressure">Blood Pressure:</label>
+              <input type="text" id="blood_pressure" name="blood_pressure" required>
+            </div>
+            <div class="input-field-group">
+              <label for="blood_sugar">Blood Sugar:</label>
+              <input type="text" id="blood_sugar" name="blood_sugar" required>
+            </div>
+            <div class="input-field-group">
+              <label for="visit_date">Visit Date:</label>
+              <input type="date" id="visit_date" name="visit_date" value="{{ date }}" readonly>
+            </div>
+
+            <!-- Medication Selection Section -->
+            <h3>Medication Selection</h3>
+            <div class="input-field-group">
+              <label for="med_type">Medication Type:</label>
+              <select id="med_type" name="med_type" required onchange="loadMedicationNames()">
+                {% for type in med_types %}
+                <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-field-group">
+              <label for="med_name">Medication Name:</label>
+              <select id="med_name" name="med_name" required></select>
+            </div>
+
+            <!-- Medical Certificate Section -->
+            <h3>Issue Medical Certificate</h3>
+            <div class="input-field-group">
+              <label for="issue_date">Issue Date:</label>
+              <input type="date" id="issue_date" name="issue_date" value="{{ date }}" readonly>
+            </div>
+            <div class="input-field-group">
+              <label for="cert_details">Certificate Details:</label>
+              <textarea id="cert_details" name="cert_details" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="submit-button" type="submit">Submit All Details</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Section (Additional Card) -->
+      <div class="extra-card">
+        <div class="extra-info-card">
+          <!-- Search User ID Input -->
+          <div class="input-field-group">
+            <label for="search_user_id">Search User ID:</label>
+            <input type="text" id="search_user_id" name="search_user_id">
+            <button type="button" class="search-button" onclick="searchUserHistory()">Search</button>
+          </div>
+
+          <!-- Averages Section -->
+          <div id="averages-section" style="display: none;">
+            <h3>Average Health Metrics (Last 5 Visits)</h3>
+            <p>Average Systolic Pressure: <span id="avg-systolic">0</span> mmHg</p>
+            <p>Average Diastolic Pressure: <span id="avg-diastolic">0</span> mmHg</p>
+            <p>Average Blood Sugar: <span id="avg-blood-sugar">0</span> mg/dL</p>
+          </div>
+
+          <!-- History Details Section -->
+          <div id="history-details" style="display:none;">
+            <h3>Top 5 History Details</h3>
+            <!-- The top 5 history details will be dynamically created and inserted here -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

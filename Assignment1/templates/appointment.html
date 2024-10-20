@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Appointments</title>
+
+  <!-- Pikaday CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css">
+
+    <!-- Pikaday JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
+
+  <!-- Your custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment.css') }}">
+
+  <!-- Javascript -->
+  <script src="{{ url_for('static', filename='js/appointment.js') }}"></script>
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/med_logo.png') }}" alt="Logo" class="logo-img">
+    </div>
+    <div class="header-buttons">
+      <a href="/user_dashboard" class="home-button">Home</a>
+      <a href="{{ url_for('settings') }}" class="settings-button">Settings</a>
+      <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Calendar Section -->
+    <div class="calendar">
+      <h2>Calendar</h2>
+      <div id="calendar-container" class="calendar-container"></div> <!-- Calendar renders here -->
+    </div>
+
+    <!-- User Form Section -->
+    <div class="user-form">
+      <h2>Appointment Details</h2>
+      <div id="appointment-details">
+        <p>Select a date to view available time slots.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

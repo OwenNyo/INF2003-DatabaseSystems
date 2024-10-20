@@ -1,0 +1,438 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f8ff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 20px 50px;
+  background-color: #0056b3;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+  height: 60px; /* Adjusted the height to make the logo smaller */
+  width: auto; /* Ensures that the aspect ratio is maintained */
+}
+
+.header-buttons {
+  display: flex;
+  gap: 1rem; /* Adds space between the buttons */
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.settings-button {
+  background-color: #55b02b; 
+  color: white;
+  padding: 0.7rem 1.5rem;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: #3a8218; 
+}
+
+/* Main Content Section */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Top Section - Two cards side by side */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Enhanced Styling for Queue and Appointment Cards */
+.queue-card,
+.appointments-card {
+  flex: 1.1;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 20px;
+}
+
+.queue-card h3,
+.appointments-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.queue-card p,
+.appointments-card li {
+  font-size: 18px;
+  color: #555;
+}
+
+.queue-card:last-child {
+  margin-right: 0;
+}
+
+/* Button Styling for Queue */
+.queue-button {
+  background-color: #55b02b;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.queue-button:hover {
+  background-color: #3a8218;
+  transform: translateY(-3px);
+}
+
+/* Content Section (Form on the left and extra card on the right) */
+.content-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 20px;
+  max-width: 100%;
+  height: 1150px; /* Set equal height for both sections */
+}
+
+.form-section {
+  flex: 1;
+  margin-right: 20px;
+  background-color: #ffffff; /* White background for the form section */
+  padding: 20px; /* Add padding inside the form section */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow to maintain card appearance */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.extra-card {
+  flex: 1;
+  background-color: #ffffff; /* White background for the record section */
+  padding: 20px; /* Add padding inside the record section */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow to maintain card appearance */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.extra-info-card {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 100%;
+  background-color: #ffffff; /* Ensure the history section also has a white background */
+  padding: 10px;
+  border-radius: 12px;
+}
+
+/* Submit Button Styling */
+.submit-button {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff; /* Primary blue color */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Darker blue for hover effect */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.submit-button:active {
+  transform: translateY(0px); /* Button returns to original position on click */
+}
+
+.submit-button:disabled {
+  background-color: #cccccc; /* Greyed out when disabled */
+  cursor: not-allowed;
+}
+
+/* Input Fields Styling */
+.input-field-group {
+  margin-bottom: 1.2rem;
+}
+
+.input-field-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-field-group input,
+.input-field-group textarea,
+.input-field-group select {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#queue-number {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* User History */
+#history-section, #history-details {
+  margin-top: 20px;
+}
+
+#history-details {
+  max-height: 100%;
+  background-color: #ffffff; /* Ensure the history section has a white background */
+  padding: 10px;
+  border-radius: 12px;
+}
+
+#history-section select, #history-details p {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+#history-details h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Styling for individual record cards */
+.history-record {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 20px; /* More space between records */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow to make records stand out */
+  border: 1px solid #ccc; /* Optional: A border around the records */
+}
+
+.history-record h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+.history-record p {
+  font-size: 16px;
+  margin-bottom: 8px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0; /* Subtle border around each detail */
+}
+
+/* Styling for the Search Button */
+.search-button {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff; /* Primary blue color */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 1rem; /* Added margin to create space between input and button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Darker blue for hover effect */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.search-button:active {
+  transform: translateY(0px); /* Button returns to original position on click */
+}
+
+.search-button:disabled {
+  background-color: #cccccc; /* Greyed out when disabled */
+  cursor: not-allowed;
+}
+
+
+
+/* Flash Message Container */
+.flash-container {
+  position: relative;
+  margin: 15px auto;
+  width: 80%;
+  max-width: 1300px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #28a745;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+}
+
+/* Appointment cards section */
+#appointment-list {
+  max-height: 300px; /* Set the maximum height you want */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  padding-right: 10px; /* Optional: Adjust for scrollbar */
+}
+
+.appointments-card {
+  flex: 1.1;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 20px;
+  overflow-y: auto;
+  max-height: 400px; /* You can adjust this height based on preference */
+}
+
+.appointment-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.appointment-details p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.no-appointments {
+  font-size: 18px;
+  color: #777;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Styling the No-Show Button */
+.no-show-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.no-show-button:hover {
+  background-color: #c82333;
+  transform: translateY(-3px);
+}
+
+.no-show-button:active {
+  transform: translateY(0);
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content, .content-section {
+    flex-direction: column;
+  }
+
+  .form-section, .extra-card {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .queue-card, .appointments-card {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .extra-info-card {
+    max-height: none; /* Remove max height on smaller screens for full scrolling */
+  }
+}
